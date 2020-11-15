@@ -2,6 +2,7 @@ package view;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -12,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import model.CYK_algorithm;
 import model.Grammar;
 
@@ -38,11 +40,14 @@ public class Controller {
     	
     	cyk.setCad(cad);
     	
+    	
     	if (cyk.cyk()) {
 			infoLabel.setText("Genera la cadena");
 		}else {
 			infoLabel.setText("No genera la cadena");
 		}
+    	
+    	generateTable();
     	
     }
 
@@ -50,7 +55,7 @@ public class Controller {
     void addGrammar_Button(ActionEvent event) {
     	
     	cyk.setGrammar(readGrammar());
-    	//readGrammar();
+    	
     	
     }
     
@@ -79,14 +84,14 @@ public class Controller {
     		int i = 0;
     		while(i <= st.countTokens()) {
     			String s = st.nextToken();
-    			System.out.println(s);
+    			
     			prod.add(s);
     			i++;
     		}
     			
     		table.put(variable, prod);
     		
-    		//System.out.println(line2 + " " + line.charAt(0));
+
 		}
     	
     	g = new Grammar(initial, table);
@@ -94,6 +99,31 @@ public class Controller {
     	
     	return g;
     	
+    }
+    
+    private void generateTable() {
+    	
+    	GridPane grid = new GridPane();
+    	HashSet<String>[][] m = cyk.getHS();
+    	
+    	for (int i = 1; i < m.length; i++) {
+
+    		for (int j = 1; j < m.length; j++) {
+    			if (m[i][j] != null) {
+    				String s = m[i][j] + "";
+    				System.out.println(s);
+    				grid.add(new Label(m[i][j] + ""), j-1, i-1);
+				}
+				
+    			
+    			
+			}
+    		
+		}
+    	
+    	scrollPane.setContent(grid);
+    	
+
     }
 
 }

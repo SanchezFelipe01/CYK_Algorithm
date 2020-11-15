@@ -29,12 +29,9 @@ public class CYK_algorithm{
 
         if (matrix[1][matrix.length-1].contains(grammar.getInitialVariable())) {
             generateString = true;
-            System.out.println("La genera mi socio");
-        }else
-            System.out.println("no la genera");
-
-        System.out.println(matrix[1][matrix.length-1]);
-
+            
+        }
+    
         return generateString;
 
     }
@@ -60,14 +57,15 @@ public class CYK_algorithm{
     private void fillMatrix(){
         
         for (int j = 2; j < matrix.length; j++) {
-            System.out.println("j = " + j);
+            
             for (int i = 1; i < (matrix.length-j)+1; i++) {
-                System.out.println("i = " + i);
+                
                 matrix[i][j] = new HashSet<>();
+                
                 for (int k = 1; k <= j-1; k++) {
                     int n = i+k;
                     int m = j-k;
-                    System.out.println("X"+i+j + " = " + "X"+i+k+"X"+n+m);
+                    
                     HashSet<String> set1 = new HashSet<String>();
                     HashSet<String> set2 = new HashSet<String>();
 
@@ -84,16 +82,15 @@ public class CYK_algorithm{
                     List<String> list = new ArrayList<>(concatenateSet(set1, set2));
                     
                     HashSet<String> setToAdd = grammar.isProduceFor(list);
-                    //System.out.println(setToAdd.size());
+                    
                     if (setToAdd != null) {
                         matrix[i][j].addAll(setToAdd);
-                    }
-                   
+                    }  
 
                 }
-                System.out.println();
+               
             }
-            System.out.println("-----------------------------------");
+            
         }
 
     }
@@ -119,7 +116,7 @@ public class CYK_algorithm{
         HashSet<String> set = new HashSet<>();
 
         if (!(s1.size() == 0 || s2.size() == 0)) {
-            System.out.println("Entre a concatenar");
+            
             for (String string : s1) {
                 
                 for (String string2 : s2) {
@@ -128,8 +125,6 @@ public class CYK_algorithm{
 
                 }
             }
-        }else{
-            System.out.println("no entre a concatenar");
         }
 
         return set;

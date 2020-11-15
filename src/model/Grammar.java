@@ -33,15 +33,14 @@ public class Grammar {
 			for (String s : p) {
 				
 				if (productions.get(c).contains(s)) {
-					System.out.println(c + " produce a " + "'" + s + "'");
+					
 					variables.add(c);
-				}else{
-					System.out.println(c + " no produce a " + "'" + s + "'");
+					
 				}
 			}
 			
 		}
-		System.out.println("size de variables = " + variables.size());
+		
 
 		if (variables.size() == 0) {
 			variables = null;
