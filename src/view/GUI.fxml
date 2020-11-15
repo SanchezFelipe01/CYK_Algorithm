@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller">
    <children>
       <TextArea fx:id="grammar_textArea" layoutX="56.0" layoutY="94.0" prefHeight="171.0" prefWidth="295.0" />
@@ -17,9 +16,9 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <TextField fx:id="cad_TextField" layoutX="56.0" layoutY="345.0" prefHeight="25.0" prefWidth="288.0" />
+      <TextField fx:id="cad_TextField" disable="true" layoutX="56.0" layoutY="345.0" prefHeight="25.0" prefWidth="288.0" />
       <Button layoutX="56.0" layoutY="281.0" mnemonicParsing="false" onAction="#addGrammar_Button" text="Agregar gramatica" />
-      <Button layoutX="56.0" layoutY="381.0" mnemonicParsing="false" onAction="#addCad_Button" text="Evaluar cadena" />
+      <Button fx:id="addCad_ButtonId" disable="true" layoutX="56.0" layoutY="381.0" mnemonicParsing="false" onAction="#addCad_Button" text="Evaluar cadena" />
       <Label fx:id="infoLabel" alignment="TOP_LEFT" layoutX="413.0" layoutY="349.0" prefHeight="104.0" prefWidth="243.0" text="Ingrese una GIC en FNC y una cadena" />
       <ScrollPane fx:id="scrollPane" layoutX="413.0" layoutY="94.0" prefHeight="171.0" prefWidth="280.0" />
    </children>

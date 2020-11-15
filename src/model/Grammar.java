@@ -8,11 +8,13 @@ public class Grammar {
 
 	private String initialVariable;
 	private Hashtable<String, List<String>> productions;
+	private boolean lambda;
 
-	public Grammar(String initialVariable, Hashtable<String, List<String>> productions) {
+	public Grammar(String initialVariable, Hashtable<String, List<String>> productions, boolean lambda) {
 
 		this.initialVariable = initialVariable;
 		this.productions = productions;
+		this.lambda = lambda;
 
 	}
 
@@ -23,7 +25,11 @@ public class Grammar {
 	public Hashtable<String, List<String>> getProductions(){
 		return productions;
 	}
-
+	
+	public boolean getLambda() {
+		return lambda;
+	}
+	
 	public HashSet<String> isProduceFor(List<String> p){
 
 		HashSet<String> variables = new HashSet<String>();

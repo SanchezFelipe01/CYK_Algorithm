@@ -50,6 +50,10 @@ public class CYK_algorithm{
     	this.grammar = grammar;
     }
     
+    public Grammar getGrammar() {
+    	return grammar;
+    }   
+    
     public void setCad(String w) {
     	this.w = w;
     }
@@ -63,8 +67,6 @@ public class CYK_algorithm{
                 matrix[i][j] = new HashSet<>();
                 
                 for (int k = 1; k <= j-1; k++) {
-                    int n = i+k;
-                    int m = j-k;
                     
                     HashSet<String> set1 = new HashSet<String>();
                     HashSet<String> set2 = new HashSet<String>();
@@ -77,8 +79,6 @@ public class CYK_algorithm{
                         set2.addAll(matrix[i+k][j-k]);
                     }
                     
-                    
-
                     List<String> list = new ArrayList<>(concatenateSet(set1, set2));
                     
                     HashSet<String> setToAdd = grammar.isProduceFor(list);
