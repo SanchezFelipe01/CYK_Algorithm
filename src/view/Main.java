@@ -1,5 +1,11 @@
 package view;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -7,12 +13,14 @@ import java.util.List;
 
 import model.*;
 
-public class Main {
+public class Main extends Application{
     
-    public static void main(String[] arg){
-
+    public static void main(String[] args){
+    
+    	launch();
+    	/*
         String initial = "S";
-        String cad = "abaab";
+        String cad = "aaba";
 
         ArrayList<String> list_S = new ArrayList<String>();
         //list_S.add("AB");
@@ -48,7 +56,9 @@ public class Main {
 
         Grammar g = new Grammar(initial, t);
         CYK_algorithm cyk = new CYK_algorithm();
-        cyk.cyk(g, cad);
+        cyk.setCad(cad);
+        cyk.setGrammar(g);
+        cyk.cyk();
 
         HashSet<String>[][] hs = cyk.getHS();
         
@@ -65,10 +75,19 @@ public class Main {
                 System.out.print(hs[i][j].size() + "*" + " ");
             }
             System.out.println();
-        }
-
-        
-        
+        }*/
+   
     }
+
+    @Override
+	public void start(Stage stage) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
+
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.setTitle("CYK");
+		stage.show();
+	}
+
 
 }

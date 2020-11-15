@@ -4,26 +4,36 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import javax.print.attribute.standard.Sides;
-
 public class CYK_algorithm{
 
     private String w;
+    private Grammar grammar;
     private HashSet<String>[][] matrix;
+    
+    public CYK_algorithm() {
+    	
+    	this.grammar = null;
+    	this.w = null;
+    	
+    }
 
-    public boolean cyk(Grammar grammar, String w){
+    @SuppressWarnings("unchecked")
+	public boolean cyk(){
 
         boolean generateString = false;
+       
         matrix = new HashSet[w.length()+1][w.length()+1];
         
-        initialize(grammar, w);
-        fillMatrix(grammar);
+        initialize();
+        fillMatrix();
 
         if (matrix[1][matrix.length-1].contains(grammar.getInitialVariable())) {
             generateString = true;
             System.out.println("La genera mi socio");
         }else
             System.out.println("no la genera");
+
+        System.out.println(matrix[1][matrix.length-1]);
 
         return generateString;
 
@@ -38,8 +48,16 @@ public class CYK_algorithm{
     public String getCad(){
         return w;
     }
+    
+    public void setGrammar(Grammar grammar) {
+    	this.grammar = grammar;
+    }
+    
+    public void setCad(String w) {
+    	this.w = w;
+    }
 
-    private void fillMatrix(Grammar g){
+    private void fillMatrix(){
         
         for (int j = 2; j < matrix.length; j++) {
             System.out.println("j = " + j);
@@ -65,7 +83,7 @@ public class CYK_algorithm{
 
                     List<String> list = new ArrayList<>(concatenateSet(set1, set2));
                     
-                    HashSet<String> setToAdd = g.isProduceFor(list);
+                    HashSet<String> setToAdd = grammar.isProduceFor(list);
                     //System.out.println(setToAdd.size());
                     if (setToAdd != null) {
                         matrix[i][j].addAll(setToAdd);
@@ -80,7 +98,7 @@ public class CYK_algorithm{
 
     }
 
-    private void initialize(Grammar g, String w){
+    private void initialize(){
         
         String c;
         
@@ -90,7 +108,7 @@ public class CYK_algorithm{
             List<String> list = new ArrayList<>();
             list.add(c);
 
-            matrix[i+1][1] = g.isProduceFor(list);
+            matrix[i+1][1] = grammar.isProduceFor(list);
 
         }
 
